@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Escale</title>
+<meta name="description" content="Escale, ton carnet de voyage : souvenirs, photos et dépenses, à garder pour toi ou à partager avec tes amis.">
+<meta name="theme-color" content="#F4F3EF">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Escale">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div class="phone" id="phone">
+  <section class="screen" id="s-home" aria-label="Accueil"></section>
+  <section class="screen" id="s-carnets" hidden aria-label="Mes voyages"></section>
+  <section class="screen" id="s-fil" hidden aria-label="Fil"></section>
+  <section class="screen" id="s-profil" hidden aria-label="Profil"></section>
+  <section class="screen" id="s-ami" hidden aria-label="Profil d'un membre"></section>
+  <section class="screen" id="s-journal" hidden aria-label="Journal"></section>
+  <section class="screen" id="s-carte" hidden aria-label="Carte"></section>
+  <section class="screen" id="s-carnet" hidden aria-label="Voyage"></section>
+  <section class="screen" id="s-depenses" hidden aria-label="Mes dépenses"></section>
+  <section class="screen" id="s-ia" hidden aria-label="Assistant">
+    <div class="navrow"><button class="iconbtn" data-act="back" aria-label="Retour"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></button><button class="link" id="clearChat">Effacer</button></div>
+    <h1 class="bigtitle sans">Assistant</h1><p class="caps" style="margin-top:6px">Tes voyages, tes comptes</p>
+    <div class="scope" id="scope"></div>
+    <div class="chat" id="chat" aria-live="polite"></div>
+  </section>
+  <div class="askbar" id="askbar" hidden>
+    <div class="sugg" id="sugg"></div>
+    <form id="askForm"><label for="askIn" class="sr">Ta question</label><input id="askIn" maxlength="500" placeholder="Une question sur tes voyages…" autocomplete="off"><button id="askBtn" aria-label="Envoyer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button></form>
+  </div>
+  <div class="dock" id="dock" hidden></div>
+  <nav aria-label="Navigation">
+    <button data-go="home" class="on"><i><svg class="o" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 10.5L12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5H15v-5.5a3 3 0 0 0-6 0v5.5H5.5A1.5 1.5 0 0 1 4 19z"/></svg><svg class="f" viewBox="0 0 24 24" fill="currentColor"><path d="M3.2 10.6L12 3.4l8.8 7.2V19a2 2 0 0 1-2 2H15v-5.5a3 3 0 0 0-6 0V21H5.2a2 2 0 0 1-2-2z"/></svg></i><span class="lb">Accueil</span></button>
+    <button data-go="carnets"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3.5" y="7" width="17" height="13" rx="2.5"/><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7M8 7v13M16 7v13"/></svg></i><span class="lb">Voyages</span></button>
+    <button data-go="carte"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M9 5L3.5 7v12.5L9 17.5l6 2 5.5-2V5L15 7z"/><path d="M9 5v12.5M15 7v4"/><path d="M17.5 13.2c0 2-2.5 4.3-2.5 4.3s-2.5-2.3-2.5-4.3a2.5 2.5 0 0 1 5 0z" fill="#fff"/><circle cx="15" cy="13.2" r=".9" fill="currentColor" stroke="none"/></svg></i><span class="lb">Carte</span></button>
+    <button data-go="fil"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="3.5"/><path d="M8 9h8M8 12.5h8M8 16h5"/></svg></i><span class="lb">Fil</span></button>
+    <button data-go="profil"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c.6-4.2 3.6-6.5 7.5-6.5s6.9 2.3 7.5 6.5"/></svg></i><span class="lb">Profil</span></button>
+  </nav>
+  <button class="fab" id="fab" data-act="plusMenu" aria-label="Ajouter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+  <div class="scrim" id="scrim" hidden></div>
+  <div class="panel" id="panel" role="dialog" aria-modal="true"></div>
+  <div class="gate" id="gate" hidden></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="offline-bar" role="status">Hors connexion : tu peux continuer à noter tes dépenses, elles seront envoyées au retour du réseau.</div>
+  <input type="file" id="file" accept="image/*" hidden>
+  <input type="file" id="scanfile" accept="image/*" capture="environment" hidden>
+  <div class="splash" id="splash"><span class="brand">Escale</span><span class="caps">Tes voyages, ton histoire</span></div>
+</div>
+<noscript>Escale a besoin de JavaScript pour fonctionner.</noscript>
+<script src="js/config.js"></script>
+<script src="vendor/supabase.js"></script>
+<script src="vendor/gsap.min.js" defer></script>
+<script src="vendor/d3.min.js"></script>
+<script src="vendor/topojson-client.min.js"></script>
+<script src="vendor/jszip.min.js" defer></script>
+<script src="js/world.js"></script>
+<script src="js/ref.js"></script>
+<script src="js/store.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/comptes.js"></script>
+<script src="js/v12.js"></script>
+<script src="js/social.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

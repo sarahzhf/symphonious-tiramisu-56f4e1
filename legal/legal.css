@@ -1,0 +1,12 @@
+body{margin:0;background:#F4F3EF;color:#171717;font:16px/1.65 Inter,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif}
+main{max-width:720px;margin:0 auto;padding:32px 20px 64px}
+a{color:#2E5E3E}
+h1{font:500 2.1rem/1.15 "Playfair Display",Georgia,serif;margin:18px 0 6px}
+h2{font-size:1.1rem;margin:34px 0 8px}
+h3{font-size:.98rem;margin:22px 0 6px}
+p,li{font-size:.95rem}
+.maj{color:#6b6e66;font-size:.85rem}
+.todo{background:#FFF3C4;padding:1px 5px;border-radius:4px}
+table{width:100%;border-collapse:collapse;font-size:.88rem;margin:10px 0}
+th,td{text-align:left;vertical-align:top;border-bottom:1px solid rgba(0,0,0,.1);padding:8px 6px}
+.back{display:inline-block;margin-bottom:8px;text-decoration:none;font-weight:600}
